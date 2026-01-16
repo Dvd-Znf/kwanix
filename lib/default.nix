@@ -1,0 +1,3 @@
+{
+  updateFromGithub = import ./updateFromGithub.nix;
+}

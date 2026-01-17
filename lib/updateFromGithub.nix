@@ -10,6 +10,6 @@
 
   komac update --submit --urls \
   ${builtins.concatStringsSep "\n" (map (target: "\"$download_url/\"" + target + " \\") targets)}
-  --version "$tag_name" \
+  --version "''${tag_name#v}" \
   ${id} & disown;
 ''

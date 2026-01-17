@@ -27,6 +27,7 @@
           komac
         ];
         text = builtins.concatStringsSep "\n" (builtins.map (lib.updateFromGithub) gh-manifests);
+        excludeShellChecks = [ "SC2086" ];
       };
 
     };

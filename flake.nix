@@ -33,8 +33,8 @@
             src = fetchFromGitHub {
               owner = "Dvd-Znf";
               repo = "Komac";
-              rev = "0554f01e566cb4327358cbe366bf0cfd8b62ccf0";
-              hash = "sha256-Woh2NNCxQkiJH/9BJpykC3Fy+nf6Oh4Zgs3If4/pt8g=";
+              rev = "3159ef92d9739ed9f2acd0aca9cada27fb269103";
+              hash = "sha256-/Uj6gSPbGzU2rrI0/iNxfgftufTQSsOQh+erE48TVpE=";
             };
             cargoDeps = rustPlatform.fetchCargoVendor {
               inherit src;

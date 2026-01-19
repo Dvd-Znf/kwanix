@@ -16,6 +16,11 @@
           id = nixpkgs.lib.removeSuffix ".nix" n;
         }) (builtins.attrNames (builtins.readDir ./winget-pkgs/fromGithub))
       );
+      web-manifests = map (manifest: import manifest) (
+        builtins.map (n: toString ./winget-pkgs/fromWebScraped + "/${n}") (
+          builtins.attrNames (builtins.readDir ./winget-pkgs/fromWebScraped)
+        )
+      );
     in
     {
       packages.x86_64-linux.default = self.packages.x86_64-linux.kwanix;
@@ -38,7 +43,9 @@
           }))
 
         ];
-        text = builtins.concatStringsSep "\n" (builtins.map (lib.updateFromGithub) gh-manifests);
+        text = builtins.concatStringsSep "\n" (
+          (builtins.map (lib.updateFromGithub) gh-manifests) ++ web-manifests
+        );
         excludeShellChecks = [ "SC2086" ];
       };
 

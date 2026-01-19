@@ -1,5 +1,5 @@
 {
-  autoreplace = true; # todo unused
+  autoreplace = true;
   repo = "gdl-org/builds";
   targets = [
     "gallery-dl_windows_x86.exe"

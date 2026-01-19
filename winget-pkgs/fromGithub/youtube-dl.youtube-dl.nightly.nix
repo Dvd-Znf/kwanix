@@ -1,5 +1,5 @@
 {
-  autoreplace = true; # todo unused
+  autoreplace = true;
   repo = "ytdl-org/ytdl-nightly";
   targets = [
     "youtube-dl.exe"

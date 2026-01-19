@@ -1,5 +1,5 @@
 {
-  autoreplace = true; # todo unused
+  autoreplace = true;
   repo = "yt-dlp/yt-dlp-nightly-builds";
   targets = [
     "yt-dlp.exe"

@@ -16,10 +16,11 @@
           id = nixpkgs.lib.removeSuffix ".nix" n;
         }) (builtins.attrNames (builtins.readDir ./winget-pkgs/fromGithub))
       );
-      web-manifests = map (manifest: import manifest) (
-        builtins.map (n: toString ./winget-pkgs/fromWebScraped + "/${n}") (
-          builtins.attrNames (builtins.readDir ./winget-pkgs/fromWebScraped)
-        )
+      web-manifests = map (manifest: import manifest.path // { id = manifest.id; }) (
+        builtins.map (n: {
+          path = toString ./winget-pkgs/fromWebScraped + "/${n}";
+          id = nixpkgs.lib.removeSuffix ".nix" n;
+        }) (builtins.attrNames (builtins.readDir ./winget-pkgs/fromWebScraped))
       );
     in
     {
@@ -44,9 +45,13 @@
 
         ];
         text = builtins.concatStringsSep "\n" (
-          (builtins.map (lib.updateFromGithub) gh-manifests) ++ web-manifests
+          (builtins.map (lib.updateFromGithub) gh-manifests)
+          ++ (builtins.map (lib.updateFromScraped) web-manifests)
         );
-        excludeShellChecks = [ "SC2086" ];
+        excludeShellChecks = [
+          "SC2086"
+          "SC2048" # forces "${array[@]}" (with quotes), but we want that behaviour >:3c
+        ];
       };
 
     };

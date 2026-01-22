@@ -24,26 +24,28 @@
       );
     in
     {
+      packages.x86_64-linux.komac = pkgs.komac.overrideAttrs (rec {
+        src = pkgs.fetchFromGitHub {
+          owner = "Dvd-Znf";
+          repo = "Komac";
+          rev = "3159ef92d9739ed9f2acd0aca9cada27fb269103";
+          hash = "sha256-/Uj6gSPbGzU2rrI0/iNxfgftufTQSsOQh+erE48TVpE=";
+        };
+        cargoDeps = pkgs.rustPlatform.fetchCargoVendor {
+          inherit src;
+          hash = "sha256-YloeJgP4wDQ4JHn+Rw8pSm5Dsx1sdz/s1CLMj5LOZ5s=";
+        };
+      });
       packages.x86_64-linux.default = self.packages.x86_64-linux.kwanix;
       packages.x86_64-linux.kwanix = pkgs.writeShellApplication {
         name = "kwanix";
-        runtimeInputs = with pkgs; [
-          curl
-          jq
-          (komac.overrideAttrs (rec {
-            src = fetchFromGitHub {
-              owner = "Dvd-Znf";
-              repo = "Komac";
-              rev = "3159ef92d9739ed9f2acd0aca9cada27fb269103";
-              hash = "sha256-/Uj6gSPbGzU2rrI0/iNxfgftufTQSsOQh+erE48TVpE=";
-            };
-            cargoDeps = rustPlatform.fetchCargoVendor {
-              inherit src;
-              hash = "sha256-YloeJgP4wDQ4JHn+Rw8pSm5Dsx1sdz/s1CLMj5LOZ5s=";
-            };
-          }))
-
-        ];
+        runtimeInputs =
+          with pkgs;
+          [
+            curl
+            jq
+          ]
+          ++ [ self.packages.x86_64-linux.komac ];
         text = builtins.concatStringsSep "\n" (
           (builtins.map (lib.updateFromGithub) gh-manifests)
           ++ (builtins.map (lib.updateFromScraped) web-manifests)

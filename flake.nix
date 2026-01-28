@@ -46,10 +46,12 @@
             jq
           ]
           ++ [ self.packages.x86_64-linux.komac ];
-        text = builtins.concatStringsSep "\n" (
-          (builtins.map (lib.updateFromGithub) gh-manifests)
-          ++ (builtins.map (lib.updateFromScraped) web-manifests)
-        );
+        text =
+          lib.cleanup
+          + builtins.concatStringsSep "\n" (
+            (builtins.map (lib.updateFromGithub) gh-manifests)
+            ++ (builtins.map (lib.updateFromScraped) web-manifests)
+          );
         excludeShellChecks = [
           "SC2086"
           "SC2048" # forces "${array[@]}" (with quotes), but we want that behaviour >:3c

@@ -28,12 +28,12 @@
         src = pkgs.fetchFromGitHub {
           owner = "Dvd-Znf";
           repo = "Komac";
-          rev = "3159ef92d9739ed9f2acd0aca9cada27fb269103";
-          hash = "sha256-/Uj6gSPbGzU2rrI0/iNxfgftufTQSsOQh+erE48TVpE=";
+          rev = "717ad2941a683c075f0c84a7479774a3e1b32fe2";
+          hash = "sha256-yt5jKxol75owJlvuqcxfVqiV7GgyX40cRJayZS9JEgo=";
         };
         cargoDeps = pkgs.rustPlatform.fetchCargoVendor {
           inherit src;
-          hash = "sha256-YloeJgP4wDQ4JHn+Rw8pSm5Dsx1sdz/s1CLMj5LOZ5s=";
+          hash = "sha256-BNwxQBINoIF87nbTQS2mqslngQbO7ghw7Fdh25f08po=";
         };
       });
       packages.x86_64-linux.default = self.packages.x86_64-linux.kwanix;

@@ -1,4 +1,5 @@
 {
+  disabled = true;
   autoreplace = true;
   fetcher = ''
     base_x64="https://artifacts.videolan.org/vlc/nightly-win64/"

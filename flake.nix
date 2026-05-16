@@ -28,8 +28,8 @@
         src = pkgs.fetchFromGitHub {
           owner = "Dvd-Znf";
           repo = "Komac";
-          rev = "a887b4b1f8b252893346a94ab2e4c5213726768a";
-          hash = "sha256-joPF92qeK+L+JfPcILbfQQXXOL11hiPDt4JNXouPCK0=";
+          rev = "73c35f67221d2206e0929ab80a8c57a47738d82b";
+          hash = "sha256-b79zK0yJem2ty7DNjBSEzBDLwbhGdLBpAAMoUp8EhX0=";
         };
         cargoDeps = pkgs.rustPlatform.fetchCargoVendor {
           inherit src;

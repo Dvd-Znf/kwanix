@@ -2,7 +2,7 @@ name: "Run"
 on:
   workflow_dispatch:
 jobs:
-  tests:
+  run:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

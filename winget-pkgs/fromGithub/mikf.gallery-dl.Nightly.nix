@@ -1,4 +1,5 @@
 {
+  disabled = true;
   autoreplace = true;
   repo = "gdl-org/builds";
   targets = [

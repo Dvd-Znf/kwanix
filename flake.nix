@@ -47,7 +47,8 @@
           ]
           ++ [ self.packages.x86_64-linux.komac ];
         text =
-          lib.cleanup
+          "export CI=true\n"
+          + lib.cleanup
           + builtins.concatStringsSep "\n" (
             (builtins.map (lib.updateFromGithub) gh-manifests)
             ++ (builtins.map (lib.updateFromScraped) web-manifests)
